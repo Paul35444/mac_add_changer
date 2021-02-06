@@ -5,8 +5,10 @@ import optparse
 
 parser = optparse.OptionParser()
 
-#allow the user to use -i or --interface and store it under interface; help option
+#allow the user to use -i or --interface and store it under interface var; help option
 parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
+#allow the user to us -m or --mac and store it to new_mac var; help option
+parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
 
 #take args from user input
 parser.parse_args()
