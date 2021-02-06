@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 
 import subprocess
+import optparse
+
+parser = optparse.OptionParser()
+
+#allow the user to use -i or --interface and store it under interface; help option
+parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
+
+#take args from user input
+parser.parse_args()
 
 interface = input("Network Interface: ")
 new_mac = input("New MAC Address: ")
