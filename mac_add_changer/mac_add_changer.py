@@ -10,20 +10,20 @@ parser.add_option("-i", "--interface", dest="interface", help="Interface to chan
 #allow the user to us -m or --mac and store it to new_mac var; help option
 parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
 
-#take args from user input
-parser.parse_args()
+#take options & args from user input
+(options, arguments) = parser.parse_args()
 
-interface = input("Network Interface: ")
-new_mac = input("New MAC Address: ")
+interface = options.interface
+new_mac = options.new_mac
 
 #get user input from variable above
 print("[+] Changing MAC address for " + interface + " to " + new_mac)
 
 #show ifconfig info and ability to run shell cmds
 #take interface down
-subprocess.call(["ifconfig " + interface + " down"])
+subprocess.call(["ifconfig", interface, "down"])
 #change mac address
-subprocess.call(["ifconfig " + interface + " hw ether " + new_mac])
+subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
 #bring interface up to enable mac address change
-subprocess.call(["ifconfig " + interface + " up"])
+subprocess.call(["ifconfig", interface, "up"])
 
