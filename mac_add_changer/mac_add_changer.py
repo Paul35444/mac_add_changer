@@ -25,8 +25,4 @@ parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
 #take options & args from user input
 (options, arguments) = parser.parse_args()
 
-#REMOVED beacuse they are called in the func below
-#interface = options.interface
-#new_mac = options.new_mac
-
 change_mac(options.interface, options.new_mac)
