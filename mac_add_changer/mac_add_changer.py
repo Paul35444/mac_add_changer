@@ -40,6 +40,12 @@ ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
 
 print(ifconfig_result)
 
-#regex to search for MAC add
+#regex to search for MAC add \w = alphanumeric char
 mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
-print(mac_address_search_result.group(0))
+
+if mac_address_search_result:
+    #print first occurence of result
+    print(mac_address_search_result.group(0))
+else:
+    #handle error
+    print("[-] Could not read MAC address. Please check your input.")
