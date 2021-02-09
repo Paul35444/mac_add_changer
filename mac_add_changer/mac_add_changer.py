@@ -35,4 +35,7 @@ def change_mac(interface, new_mac):
 #get arguments from func above and store in options
 options = get_arguments()
 #call options from get_args func above and implement under change_mac func
-change_mac(options.interface, options.new_mac)
+#change_mac(options.interface, options.new_mac)
+ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
+
+print(ifconfig_result)
