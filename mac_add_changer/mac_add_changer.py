@@ -39,3 +39,7 @@ options = get_arguments()
 ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
 
 print(ifconfig_result)
+
+#regex to search for MAC add
+re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+
