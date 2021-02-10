@@ -32,20 +32,27 @@ def change_mac(interface, new_mac):
 #bring interface up to enable mac address change
     subprocess.call(["ifconfig", interface, "up"])
 
-#get arguments from func above and store in options
-options = get_arguments()
+#func to get current mac address
+def get_current_mac(interface):
 #call options from get_args func above and implement under change_mac func
 #change_mac(options.interface, options.new_mac)
-ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
-
-print(ifconfig_result)
+    ifconfig_result = subprocess.check_output(["ifconfig", interface])
 
 #regex to search for MAC add \w = alphanumeric char
-mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+    mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
 
-if mac_address_search_result:
-    #print first occurence of result
-    print(mac_address_search_result.group(0))
-else:
-    #handle error
-    print("[-] Could not read MAC address. Please check your input.")
+    if mac_address_search_result:
+#print first occurence of result
+        return mac_address_search_result.group(0)
+    else:
+#handle error
+        print("[-] Could not read MAC address. Please check your input.")
+
+#get arguments from func above and store in options
+options = get_arguments()
+#get interface entry and display
+current_mac = get_current_mac(options.interface)
+print ("Current Mac = " + str(current_mac))
+
+#change_mac(options.interface, options.new_mac)
+
