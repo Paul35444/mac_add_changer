@@ -40,7 +40,7 @@ def get_current_mac(interface):
     ifconfig_result = subprocess.check_output(["ifconfig", interface])
 
 #regex to search for MAC add \w = alphanumeric char
-    mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+    mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
 
     if mac_address_search_result:
 #print first occurence of result
@@ -62,4 +62,3 @@ if current_mac == options.new_mac:
     print("[+] MAC address was successfully changed to " + current_mac)
 else:
     print("[-] MAC address was NOT changed. Please check your cmd line inputs.")
-
