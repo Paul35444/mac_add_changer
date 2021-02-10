@@ -2,6 +2,7 @@
 
 import subprocess
 import optparse
+import re
 
 #func to call to get user inputs/args
 def get_arguments():
